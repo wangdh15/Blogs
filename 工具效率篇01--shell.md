@@ -108,6 +108,10 @@ false && echo "Will not be printed"
 
 false ; echo "This will always run"
 # This will always run
+
+## 不能通过命令的返回值判断
+command1  && command2  && command3  ## commond1 成功后才会执行command2 ， command3
+command1 || command2  || command3   ## command1 失败后才会执行command2
 ```
 
 #### Shell脚本实例
