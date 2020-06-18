@@ -192,4 +192,4 @@ Whenever you’re typing in any command, think about what manipulation the comma
 - [追踪某些代码的历史](https://blog.csdn.net/zhangphil/article/details/81067239)
 - [将一个文件从所有的commit中删除](https://help.github.com/en/github/authenticating-to-github/removing-sensitive-data-from-a-repository)（会修改commit的hash值)
 - [暂存当前分支的修改，切换到另一个分支](https://blog.csdn.net/daguanjia11/article/details/73810577)
-- 
+- [如何向开源项目pr](https://blog.csdn.net/vim_wj/article/details/78300239)
