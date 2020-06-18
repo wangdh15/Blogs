@@ -142,6 +142,7 @@ Whenever you’re typing in any command, think about what manipulation the comma
   - Write [good commit messages](https://tbaggery.com/2008/04/19/a-note-about-git-commit-messages.html)!
   - Even more reasons to write [good commit messages](https://chris.beams.io/posts/git-commit/)!
 - `git log`: shows a flattened log of history
+  - `git log <filename>`：show the history of a file
 - `git log --all --graph --decorate`: visualizes history as a DAG
 - `git diff <filename>`: show differences since the last commit
 - `git diff <revision> <filename>`: shows differences in a file between snapshots
@@ -186,3 +187,9 @@ Whenever you’re typing in any command, think about what manipulation the comma
 - `git bisect`: binary search history (e.g. for regressions)
 - `.gitignore`: [specify](https://git-scm.com/docs/gitignore) intentionally untracked files to ignore
 
+#### Exercises
+
+- [追踪某些代码的历史](https://blog.csdn.net/zhangphil/article/details/81067239)
+- [将一个文件从所有的commit中删除](https://help.github.com/en/github/authenticating-to-github/removing-sensitive-data-from-a-repository)（会修改commit的hash值)
+- [暂存当前分支的修改，切换到另一个分支](https://blog.csdn.net/daguanjia11/article/details/73810577)
+- 
