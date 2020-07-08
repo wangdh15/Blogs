@@ -290,3 +290,90 @@ int main() {
     return 0;
 }
 ```
+
+### 恢复空格
+
+[原题链接](https://leetcode-cn.com/problems/re-space-lcci/)
+
+#### 解题思路
+
+定义状态`dp[i]`为第`0-i`个字符的最小未识别的字符数。则在求的时候，可以判断是否存在一个后缀使得其是字典中的某个单词。这个一种方法是可以将字典中的单词倒序添加到Trie中，然后每次都尝试逆序遍历。
+
+第二种方法是正序建立AC自动机，然后直接在自动机上进行跳转。同时需要记录每个节点的深度，可以前一个状态是哪一个。
+
+#### C++代码
+
+```c++
+class Solution {
+public:
+    
+    int tr[150010][26];
+    bool is_end[150010];
+    int dep[150010], idx = 0;
+    int ne[150010];
+    
+    // Trie的插入操作
+    void insert(string &a) {
+        
+        int p = 0, dd = 0;
+        for (auto x : a) {
+            dd ++;
+            int t = x - 'a';
+            if (!tr[p][t]) {
+                tr[p][t] = ++idx;
+                dep[idx] = dd;
+            }
+            p = tr[p][t];
+        }
+        is_end[p] = true;
+    }
+    
+    // 构建AC自动机
+    void build() {
+        queue<int> qe;
+        for (int i = 0; i < 26; i ++) {
+            if (tr[0][i]) qe.push(tr[0][i]);
+        }
+        while (qe.size()) {
+            
+            int ele = qe.front();
+            qe.pop();
+            for (int i = 0; i < 26; i ++) {
+                int t = tr[ele][i];
+                if (!t) continue;
+                int j = ne[ele];
+                while (j && !tr[j][i]) j = ne[j];
+                if (tr[j][i]) j = tr[j][i];
+                ne[t] = j;
+                qe.push(t);
+            }
+        }
+    }
+    
+    int respace(vector<string>& dit, string sent) {
+        for (auto x : dit) insert(x);
+        build();
+        int n = sent.size();
+        vector<int> dp(n + 1);
+        dp[0] = 0;
+        int j = 0;
+        for (int i = 0; i < n; i ++) {
+            dp[i + 1] = dp[i] + 1;
+            int c = sent[i] - 'a';
+            while (j && !tr[j][c]) j = ne[j];
+            if (tr[j][c]) j = tr[j][c];
+            int p = j;
+
+            // 开始在AC自动机上回溯
+            while (p) {
+                if (is_end[p]) {  // 当前状态是某个字符串结尾，也就是存在某个后缀为字典中的单词
+                    dp[i + 1] = min(dp[i + 1], dp[i + 1 - dep[p]]);  
+                }
+                p = ne[p]; 
+            }
+        }
+        return dp[n];
+    }
+};
+```
+
