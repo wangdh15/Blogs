@@ -110,7 +110,7 @@ g++ main.o -o main #  -o用于指定生成的文件名，如果不指定-o的话
 
 [C/C++开发环境](https://linux.fasionchan.com/zh_CN/latest/development-environment/c-cpp.html)
 
-[cmake入门实战]([https://www.hahack.com/codes/cmake/#%E4%BB%80%E4%B9%88%E6%98%AF-CMake](https://www.hahack.com/codes/cmake/#什么是-CMake))
+[cmake入门实战](https://www.hahack.com/codes/cmake/#什么是-CMake)
 
 [cmake使用示例与整理总结](https://blog.csdn.net/wzzfeitian/article/details/40963457)
 
