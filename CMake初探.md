@@ -102,12 +102,6 @@ g++ main.o -o main #  -o用于指定生成的文件名，如果不指定-o的话
 
 <img src="CMake初探/05.jpg" alt="image-20200716232230132" style="zoom:70%;" />
 
-
-
-
-
-
-
 ### 参考文献
 
 [gcc/g++ 实战之编译的四个过程](https://www.cnblogs.com/zjiaxing/p/5557549.html)
@@ -115,4 +109,10 @@ g++ main.o -o main #  -o用于指定生成的文件名，如果不指定-o的话
 [知乎](https://www.zhihu.com/question/27455963)
 
 [C/C++开发环境](https://linux.fasionchan.com/zh_CN/latest/development-environment/c-cpp.html)
+
+[cmake入门实战]([https://www.hahack.com/codes/cmake/#%E4%BB%80%E4%B9%88%E6%98%AF-CMake](https://www.hahack.com/codes/cmake/#什么是-CMake))
+
+[cmake使用示例与整理总结](https://blog.csdn.net/wzzfeitian/article/details/40963457)
+
+[cmake学习笔记](https://juejin.im/post/5deb47146fb9a01662435779)
 
