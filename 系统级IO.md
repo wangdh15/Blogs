@@ -15,7 +15,7 @@ Linux文件就是一个字节序列。
 
 $$B_0, B_1, ..., B_n$$
 
-所有的IO设备(网络、终端、磁盘)都被模型化为文件，所有的输入输出都被当做对相应文件的读和写来执行。
+所有的**IO设备**(网络、终端、磁盘)都**被模型化为文件**，所有的输入输出都被当做对相应文件的读和写来执行。
 
 将设备映射为文件，Linux内核引出一个简单、低级的应用接口，使得所有的输入和输出可以以一致统一的方式来执行：
 
@@ -75,7 +75,60 @@ int dup2(int oldfd, int newfd); // 覆盖oldfd的内容到newfd中
 
 上图中，为调用`dup(4, 1)`的结果。这样任何写到标准输出的内容都被重定向到了文件B中。
 
+### 4. 标准IO
+
+C语言定义了一组高级输入输出函数，为标准I/O库。提供了如下的函数
+
+1. 打开关闭文件`fopen/fclose`
+2. 读写字节`fread/fwrite`
+3. 读写字符串`fgets/fputs`
+4. 格式化IO`scanf/printf`
+
+标准IO库将打开的文件模型化为一个**流**。一个流就是一个指向`FILE`类型的指针。类型为`FILE`的流是对**文件描述符**和**流缓冲区**的抽象。使用缓冲区的目的是使开销较高的Linux I/O系统调用的数量尽可能得小。先对缓冲区操作，然后再缓冲区满之后再调用系统调用进程操作。
+
+每个C程序开始时都有三个打开的流，`stdin`、`stdout`、`stderr`，分别对应标准输入，标准输出和标准错误。
+
+```c
+#include <stdio.h>
+extern FILE *stdin;  / 标注输入，代表描述符0
+extern FILE *stdout; / 标注输出，代表描述符1
+extern FILE *stderr; / 标注错误，代表描述符2
+```
+
+```c
+#include <stdio.h>
+
+int main() {
+    printf("Stdout Hello World\n");
+    fprintf(stdout, "Stdout Hello World\n");
+    perror("Stderr Hello World\n");
+    fprintf(stderr, "Stderr Hello World\n");
+    return 0;
+}
+```
+
+- `stderr`没有缓冲，立即输出。
+- `stdout`默认是缓冲，遇到`\n`向外输出内容
+- 如果想实时输出，则加上`fflush(stdout)`，从而达到实时输出的效果
+
+可以对下面的代码进行断电调试，从而感受这种现象。
+
+```c
+#include <cstdio>
+
+int main() {
+    printf("Stdout Hello World");
+    fflush(stdout);
+    fprintf(stdout, "Stdout Hello World\n");
+    perror("Stderr Hello World");
+    fprintf(stderr, "Stderr Hello World\n");
+    return 0;
+}
+```
+
 <img src="系统级IO/05.png" alt="image-20200801010858509" style="zoom:67%;" />
+
+
 
 
 
