@@ -13,5 +13,13 @@ tags:
 
 [constexpr](https://www.cnblogs.com/DswCnblog/p/6513310.html)
 
+[lambda表达式](https://www.cnblogs.com/DswCnblog/p/5629165.html)
+
+[初始化列表](https://www.cnblogs.com/graphics/archive/2010/07/04/1770900.html)
+
+[decltype](https://www.cnblogs.com/QG-whz/p/4952980.html)
+
+[右值引用](http://thbecker.net/articles/rvalue_references/section_01.html)
+
 ### 2. STL相关
 
