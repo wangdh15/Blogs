@@ -1,10 +1,10 @@
 ---
 title: CPP文章汇总
 date: 2020-10-15 15:55:01
-categories
+categories:
 	- C++
 tags:
-	- C++
+    - C++
 ---
 
 > 汇总一些学习C++的时候看到的感觉比较好的资源
