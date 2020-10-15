@@ -97,7 +97,7 @@ int main(){
 
 然后找这个状态第一次出现的位置，相减取最大即可得到最长。
 
-**时间复杂度O(N)， 空间复杂度O(1)**s
+**时间复杂度O(N)， 空间复杂度O(1)**
 
 #### Python代码
 
@@ -293,4 +293,42 @@ int main(){
     return 0;
 }
 ```
+
+### 找出最长的超赞子字符串
+
+[原题链接](https://leetcode-cn.com/problems/find-longest-awesome-substring/)
+
+<img src="状态压缩DP/02.png" alt="image-20200810190521382" style="zoom:50%;" />
+
+#### 解题思路
+
+状态压缩DP + 前缀和。这道题和前面的偶数次元音是一个类型的题目。能够形成回文串的只能出现的次数都是偶数，或者有一个出现了奇数。那么就可以先找都是偶数，在暴力枚举是奇数的位置即可。
+
+#### C++代码
+
+```c++
+class Solution {
+public:
+    int longestAwesome(string s) {
+        vector<int> dp(1 << 10, 2e5);
+        dp[0] = -1;
+        int rec = 0;
+        int ans = 1;
+        int n = s.size();
+        for (int i = 0; i < n; i ++) {
+            char x = s[i];
+            rec ^= (1 << (x - '0'));
+            ans = max(i - dp[rec], ans);
+            for (int j = 0; j < 10; j ++) {
+                int t = rec ^ (1 << j);
+                ans = max(i - dp[t], ans);
+            }
+            if (dp[rec] == 2e5) dp[rec] = i;
+        }
+        return ans;
+    }
+};
+```
+
+
 
