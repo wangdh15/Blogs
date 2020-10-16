@@ -21,5 +21,7 @@ tags:
 
 [右值引用](http://thbecker.net/articles/rvalue_references/section_01.html)
 
+[explicit](https://zhuanlan.zhihu.com/p/52152355)
+
 ### 2. STL相关
 
