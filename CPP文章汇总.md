@@ -23,5 +23,19 @@ tags:
 
 [explicit](https://zhuanlan.zhihu.com/p/52152355)
 
+[initializer_list](https://www.cnblogs.com/lysuns/p/4278589.html)
+
+[类型强制转换](https://blog.csdn.net/ydar95/article/details/69822540)
+
+[typeid](https://blog.csdn.net/gatieme/article/details/50947821)
+
 ### 2. STL相关
+
+### 3. 机制
+
+[虚函数表](https://blog.twofei.com/496/)
+
+[虚继承1](https://blog.csdn.net/jackystudio/article/details/17877219)
+
+[虚继承2](https://zhuanlan.zhihu.com/p/41309205)
 
