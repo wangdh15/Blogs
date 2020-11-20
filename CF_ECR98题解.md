@@ -1,3 +1,16 @@
+---
+title: CF_ECR98题解
+date: 2020-11-20 12:28:13
+categories:
+	- 比赛题解
+tags:
+	- CodeForces
+	- 比赛题解
+	- 数据结构与算法
+
+mathjax: true
+---
+
 ## [CF Educational Codeforces Round 98题解](https://codeforces.com/contest/1452)
 
 ### [A](https://codeforces.com/contest/1452/problem/A)
