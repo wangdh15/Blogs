@@ -34,8 +34,10 @@ b *0x7c00  # 在虚拟内存0x7c00的地方打断点，运行到这个地址的�
 ### 03 执行
 
 ```shell
-s  # 源码单步执行
-si # 汇编单步执行
+s  # 源码单步执行，遇到函数的话进入
+si # 汇编单步执行，遇到函数进入
+n  # 源码单步执行，遇到函数不跳入
+ni # 汇编单步执行，遇到函数不跳入
 c  # 持续运行到下一个断点
 ```
 
@@ -43,7 +45,7 @@ c  # 持续运行到下一个断点
 
 ```shell
 layout split  # 同时显式汇编以及源码
-layout sam  # 显式汇编
+layout asm  # 显式汇编
 layout src  # 显式源码
 
 Ctrl + L  # 刷新屏幕，有些时候会发生错位
@@ -60,5 +62,35 @@ info registers  # 查看当前所有寄存器的值
 info + others  # 将others替换为其它关键字可以查看很多其它的信息，比如当前打的断点信息等等
 							 # 可以查阅手册或者直接在gdb中输入info查看提示信息
 info stack / bt / backtrace  # 查看调用栈信息
+```
+
+###06 查看内存值
+
+```shell
+### gdb help 信息
+(gdb) help x
+Examine memory: x/FMT ADDRESS.
+ADDRESS is an expression for the memory address to examine.
+FMT is a repeat count followed by a format letter and a size letter.
+Format letters are o(octal), x(hex), d(decimal), u(unsigned decimal),
+  t(binary), f(float), a(address), i(instruction), c(char) and s(string).
+Size letters are b(byte), h(halfword), w(word), g(giant, 8 bytes).
+The specified number of objects of the specified size are printed
+according to the format.
+Defaults for format and size letters are those previously used.
+Default count is 1.  Default address is following last thing printed
+with this command or "print".
+(gdb) x /6cb 0x804835c //打印地址0x804835c起始的内存内容，连续6个字节，以字符格式输出。
+### 
+# example
+x /6cb 0x804835c //打印地址0x804835c起始的内存内容，连续6个字节，以字符格式输出。
+x /sb 0x402400   // 打印地址0x402400起始的字符串，遇到\0为止
+x /52db 0x402400  // 打印0x402400开始的52字节的内容，每个自己的内容按照10进制展示
+
+
+#### print
+print [[OPTION]... --] [/FMT] [EXP]  // 其中FMT没有x中的count和size letters
+# example
+print /s (cha*)$rdi   // %rdi寄存器中存放着一个内存地址，将这个内存地址转为(char*)，然后打印这个地方开始的字符串。和 x /s $rdi 一样的效果
 ```
 
